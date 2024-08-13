@@ -32,24 +32,7 @@ help                            Show make target documentation
 
 ~~~
 
-~~~
-my_app.zip
-├── my_module.py
-├── my_package/
-│   ├── __init__.py
-│   └── other_module.pymake clean
-└── main.py
-
-
-python -m zipfile -c my_app.zip
-python -m zipfile -c my_app.zip main.py
-
-or
-python -m my_app.zip main
-
-~~~
-
-## from python file
+## Run python file from zip
 ~~~
 import sys
 import runpy

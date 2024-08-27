@@ -4,9 +4,6 @@ APPLICATIONS := app-1 app-2
 .DEFAULT_GOAL = help
 export CURRENT_ENV = test
 
-SSAP_DIR := ssap-reports  # Define SSAP_DIR here
-
-
 .PHONY: clean-parent
 clean-parent: ## Remove distribution and report directories
 	rm -rf dist
@@ -57,10 +54,10 @@ cover: ## Generate coverage reports for all applications
 
 .PHONY: ssap
 ssap: ## generate required reports for ssap
-	@mkdir -p $(SSAP_DIR);
+	@mkdir -p ssap-reports;
 	@for applications in $(APPLICATIONS); do \
   	  	${MAKE} -C applications/$$applications ssap || FAILURES=$$(( $$FAILURES+1 )) ; \
-  		cat applications/$$applications/requirements.txt | sed -E '/file:\/\/\//d' >> $(SSAP_DIR)/pip_dependency_tree.txt; \
+  		cat applications/app-1/requirements.txt | sed -E '/file:\/\/\//d' >> ssap-reports/pip_dependency_tree.txt; \
   	done; \
   	exit $$(( $$FAILURES ))
 
